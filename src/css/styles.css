@@ -10,6 +10,7 @@
 .container {
   max-width: 1600px;
   margin: auto;
+  padding: 0 50px;
 }
 body {
   background-color: black;
@@ -86,4 +87,5 @@ button:hover {
 .info {
   display: flex;
   gap: 15px;
+  justify-content: center;
 }
