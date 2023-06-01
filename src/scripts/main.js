@@ -30,15 +30,7 @@ async function showResults(e) {
 
 async function loadPhotos({ q, page }) {
   const photos = await dataFromPixabay({ q, page });
-
-  if (photos.length === 0) {
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    return;
-  }
   drawResults({ photos, page });
-  Notiflix.Notify.success(`Hooray! We found images.`);
   createSimpleLightBox.refresh();
   return;
 }

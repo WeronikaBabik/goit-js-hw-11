@@ -15,7 +15,22 @@ export default async function dataFromPixabay({ q = '', page = '1' }) {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    const { hits: photos } = await response.json();
+    const { hits: photos, totalHits } = await response.json();
+    if (totalHits === 0) {
+      Notiflix.Notify.warning(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+      return;
+    }
+    if (page > totalHits / DEFAULT_PIXABAY_PARAMS.per_page) {
+      Notiflix.Notify.warning(
+        "We're sorry, but you've reached the end of search results."
+      );
+      return;
+    }
+    if (q !== '') {
+      Notiflix.Notify.success(`Hooray! We found new ${totalHits} images.`);
+    }
     return photos;
   } catch (e) {
     Notiflix.Notify.failure(
