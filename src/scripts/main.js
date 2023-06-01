@@ -8,7 +8,7 @@ import dataFromPixabay from './pixabay.js';
 const searchQuery = document.querySelector('input[name="searchQuery"]');
 //const btn = document.querySelector('button[type="submit"]');
 const searchForm = document.querySelector('.search-form');
-const btnLoadMore = document.querySelector('.load-more');
+export const btnLoadMore = document.querySelector('.load-more');
 const numberOfPage = document.querySelector('input[name="page"]');
 
 searchForm.addEventListener('submit', showResults);
