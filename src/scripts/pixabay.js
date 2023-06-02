@@ -1,7 +1,6 @@
 import { API_URL, DEFAULT_PIXABAY_PARAMS } from './configuration';
 import { btnLoadMore } from './main';
 import axios from 'axios';
-const axios = require('axios').default;
 import Notiflix, { Notify } from 'notiflix';
 export default async function dataFromPixabay({ q = '', page = '1' }) {
   try {
