@@ -1,23 +1,20 @@
-import { API_URL, API_KEY, DEFAULT_PIXABAY_PARAMS } from './configuration';
+import { API_URL, DEFAULT_PIXABAY_PARAMS } from './configuration';
 import { btnLoadMore } from './main';
 import axios from 'axios';
+const axios = require('axios').default;
 import Notiflix, { Notify } from 'notiflix';
 export default async function dataFromPixabay({ q = '', page = '1' }) {
   try {
-    const query = new URLSearchParams({
+    const query = {
       ...DEFAULT_PIXABAY_PARAMS,
       page,
       q,
-    });
+    };
 
-    const response = await fetch(`${API_URL}?${query}`);
-    if (!response.ok) {
-      Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
-      );
-    }
-    const { hits: photos, total } = await response.json();
-    if (total === 0) {
+    const response = await axios.get(API_URL, { params: query });
+    const { hits: photos, total } = response.data;
+
+    if (photos === 0 && q !== '') {
       Notiflix.Notify.warning(
         'Sorry, there are no images matching your search query. Please try again.'
       );
